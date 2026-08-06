@@ -1,5 +1,4 @@
-CREATE SCHEMA IF NOT EXISTS retail_project();
-
+CREATE DATABASE IF NOT EXISTS retail_project;
 
 CREATE TABLE IF NOT EXISTS retail_project.clientes(
 	id_cliente SERIAL PRIMARY KEY
@@ -82,8 +81,7 @@ COMMIT;
 
 BEGIN;
 
-ALTER TABLE retail_project.productos
-UPDATE 
+UPDATE retail_project.productos
 SET precio = precio * 1.21 
 WHERE categoria = 'Periféricos y Accesorios'
 ;
