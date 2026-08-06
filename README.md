@@ -13,8 +13,7 @@ Cada carpeta corresponde a una entrega del curso, numerada según el orden en qu
 ```
 Coderhouse-SQL/
 ├── 02 - Tablas principales con restricciones y datos iniciales/
-│   ├── script.sql
-│   └── ...
+│   ├── TP 02 - SQL - Coderhouse.sql
 └── README.md
 ```
 
