@@ -33,11 +33,8 @@ Coderhouse-SQL/
 
 | # | Entrega | Descripción |
 |---|---------|-------------|
-
 | 02 | [Tablas principales con restricciones y datos iniciales](./02%20-%20Tablas%20principales%20con%20restricciones%20y%20datos%20iniciales) | Creación de tablas principales, aplicación de restricciones (PK, FK, NOT NULL, UNIQUE, CHECK) y carga de datos iniciales. |
-
 | 03 | [Limpieza de Datos de Inventario](./03%20-%20Limpieza%20de%20Datos%20de%20Inventario) | Tratamiento de valores NULL mediante COALESCE y elaboración de consultas para la limpieza y normalización de datos. |
-
 | 04 | [Consultas multicapa para análisis de negocio](./04%20-%20Consultas%20multicapa%20para%20an%C3%A1lisis%20de%20negocio) | Desarrollo de consultas utilizando JOIN, LEFT JOIN, GROUP BY, HAVING y funciones de agregación para resolver problemas de análisis de negocio. |
 
 ## 🛠️ Tecnologías utilizadas
