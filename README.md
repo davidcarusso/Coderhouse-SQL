@@ -14,6 +14,9 @@ Cada carpeta corresponde a una entrega del curso, numerada según el orden en qu
 Coderhouse-SQL/
 ├── 02 - Tablas principales con restricciones y datos iniciales/
 │   ├── TP 02 - SQL - Coderhouse.sql
+|   03 - 03 - Limpieza de Datos de Inventario
+|   ├── Trabajo 03 - SQL - Coderhouse - Entregable.md
+|   ├── Trabajo Entregable 03 - Limpieza de Datos de Inventario - Coderhouse.sql
 └── README.md
 ```
 
@@ -24,6 +27,8 @@ Coderhouse-SQL/
 | # | Entrega | Descripción |
 |---|---------|-------------|
 | 02 | [Tablas principales con restricciones y datos iniciales](./02%20-%20Tablas%20principales%20con%20restricciones%20y%20datos%20iniciales) | Creación de las tablas principales del modelo de datos, con sus restricciones (PK, FK, NOT NULL, UNIQUE, etc.) y carga de datos iniciales. |
+| 03 | [Limpieza de Datos de Inventario](./03%20-%20Limpieza%20de%20Datos%20de%20Inventario)| Tratamiento de valores NULL y sus consultas |
+
 
 ## 🛠️ Tecnologías utilizadas
 
