@@ -125,6 +125,11 @@ LIMIT 10
 |Lucía Álvarez|lucia.alvarez@example.com|659.93|
 
 
+## Tablas: 
+
+![.\images\neondb - neondb - entregable_04.png"]
+
+
 ## 🔗 Recursos
 
 **Repositorio:** [Coderhouse-SQL](https://github.com/davidcarusso/Coderhouse-SQL)
