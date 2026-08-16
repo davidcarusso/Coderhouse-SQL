@@ -337,3 +337,13 @@ ORDER BY 2
 | Campera de Abrigo                  | 85,000                 |
 | Silla de Escritorio Ergonómica     | 95,000                 |
 | Monitor 24 Pulgadas                | 120,000                |
+
+## 🔗 Recursos
+
+**Repositorio:** [Coderhouse-SQL](https://github.com/davidcarusso/Coderhouse-SQL)
+
+**Trabajo Práctico 03:** [Limpieza de Datos de Inventario](https://github.com/davidcarusso/Coderhouse-SQL/tree/master/03%20-%20Limpieza%20de%20Datos%20de%20Inventario)
+
+> 📌 **Tecnología:** PostgreSQL  
+> 🗄️ **Base de datos:** Neon  
+> 📂 **Schema:** `entregable_03`
