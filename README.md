@@ -13,19 +13,20 @@ Cada carpeta corresponde a una entrega del curso, numerada según el orden en qu
 ```
 Coderhouse-SQL/
 ├── 02 - Tablas principales con restricciones y datos iniciales/
-│   └── TP 02 - SQL - Coderhouse.sql
+│ └── pre-entrega-modulo2.sql
 │
 ├── 03 - Limpieza de Datos de Inventario/
-│   ├── Trabajo 03 - SQL - Coderhouse - Entregable.md
-│   └── Trabajo Entregable 03 - Limpieza de Datos de Inventario - Coderhouse.sql
+│ ├── pre-entrega-modulo3.sql
+│ └── README.md
 │
 ├── 04 - Consultas multicapa para análisis de negocio/
-│   ├── Trabajo 04 - SQL - Coderhouse.md
-│   ├── pre-entrega-modulo4.sql
-│   └── Carga de datos en tablas para entrega-04.sql
+│ ├── Carga de datos en tablas para entrega-04.sql
+│ ├── pre-entrega-modulo4.sql
+│ └── README.md
 │
 └── README.md
 ```
+
 
 > A medida que se sumen nuevas entregas, se agregará una carpeta numerada (03, 04, ...) con su contenido correspondiente.
 
