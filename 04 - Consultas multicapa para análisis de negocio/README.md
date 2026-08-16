@@ -130,13 +130,13 @@ LIMIT 10
 
 
 ## Tablas: 
----
+
 ![Relación de las tablas](./images/neondb%20-%20neondb%20-%20entregable_04.png)
 
 
 
 ## 🔗 Recursos
----
+
 **Repositorio:** [Coderhouse-SQL](https://github.com/davidcarusso/Coderhouse-SQL)
 
 **Trabajo Práctico 04:** [Limpieza de Datos de Inventario](https://github.com/davidcarusso/Coderhouse-SQL/tree/master/04%20-%20Consultas%20multicapa%20para%20an%C3%A1lisis%20de%20negocio)
