@@ -38,8 +38,8 @@ Entregable
 6. Desarrolla el 'Top Ranking' uniendo clientes y ventas.
 7. Comenta cada consulta explicando la lógica aplicada.
 8. Sube tu script a tu repositorio del curso para revisión.
-
-### Querys: 
+ 
+---
 
 > [!Question]
 > Desarrolla la consulta de 'Rentabilidad por Categoría' uniendo las tablas ventas, productos y categorias. Aplica filtros con HAVING.
@@ -62,6 +62,8 @@ HAVING sum(COALESCE (v.cantidad, 0) * COALESCE (p.precio , 0)) > 7000
 | categoria_producto       | ingreso_total |
 | ------------------------ | ------------- |
 | Periféricos y Accesorios | 8,566.6       |
+
+---
 
 > [!Question]
 > Desarrolla la consulta de 'Clientes Escurridizos' usando LEFT JOIN para hallar registros sin coincidencias en ventas.
@@ -88,6 +90,8 @@ WHERE v.id_ventas IS NULL
 | Julieta Molina   | [NULL] |
 | Martín Cabrera   | [NULL] |
 
+
+---
 
 > [!Question]
 > Desarrolla el 'Top Ranking' uniendo clientes y ventas.
@@ -126,12 +130,13 @@ LIMIT 10
 
 
 ## Tablas: 
+---
+![Relación de las tablas](./images/neondb - neondb - entregable_04.png)
 
-![.\images\neondb - neondb - entregable_04.png"]
 
 
 ## 🔗 Recursos
-
+---
 **Repositorio:** [Coderhouse-SQL](https://github.com/davidcarusso/Coderhouse-SQL)
 
 **Trabajo Práctico 04:** [Limpieza de Datos de Inventario](https://github.com/davidcarusso/Coderhouse-SQL/tree/master/04%20-%20Consultas%20multicapa%20para%20an%C3%A1lisis%20de%20negocio)
