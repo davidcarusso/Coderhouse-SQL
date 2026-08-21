@@ -87,7 +87,7 @@ CREATE TABLE IF NOT EXISTS entregable_05.venta(
 
 ### Visualizamos las tablas: 
 
-![[Pasted image 20260821093900.png]]
+![Relaciones entre tablas](./05%20-%20Window%20Functions/images/entregable_05_relaciones_tablas.png)
 
 ### Cargar de datos ``INSERT INTO``
 
@@ -215,6 +215,9 @@ FROM datos
 ;
 ```
 
+<details>
+<summary>📊 Ver tabla completa</summary>
+
 - Output
 
 | fecha                   | hora | turno  | año   | mes | periodo | producto               | categoria         | cantidad | precio  |
@@ -224,6 +227,8 @@ FROM datos
 | 2026-05-02 16:00:00.000 | 16   | Tarde  | 2,026 | 5   | 202,605 | Hub USB-C              | Accesorios        | 1        | 70,000  |
 | 2023-03-03 09:30:00.000 | 9    | Mañana | 2,023 | 3   | 202,303 | Batidora Planetaria    | Cocina            | 2        | 310,000 |
 | 2023-12-14 11:40:00.000 | 11   | Mañana | 2,023 | 12  | 202,312 | Hub USB-C              | Accesorios        | 7        | 70,000  |
+
+</details>
 
 ### Creamos el CTE `ventas_mensuales`
 
@@ -280,6 +285,7 @@ ORDER BY año, mes, ventas
 | 2,023 | 2   | Cocina            | 1,300,000 |
 | 2,023 | 3   | Accesorios        | 90,000    |
 | 2,023 | 3   | Hogar             | 375,000   |
+
 ## Segunda instancia de CTE
 
 > [!Question]
@@ -318,6 +324,7 @@ ORDER BY 1, 2, ventas DESC
 
 
 - El total acumulado (Running Total) de ventas por categoría a través del tiempo.
+
 ```SQL
 SELECT
 *
@@ -334,7 +341,9 @@ Del mismo modo separo la suma con la categoría y lo ordeno primero por año y l
 ```
 
 - Output
-Ejemplo de acumulado accesorios. 
+
+<details>
+<summary>📊 Ejemplo de acumulado accesorios.</summary>
 
 |año|mes|categoria|ventas|ranking_categorias|sum_acum|
 |---|---|---|---|---|---|
@@ -359,6 +368,8 @@ Ejemplo de acumulado accesorios.
 |2,026|5|Accesorios|250,000|6|6,405,000|
 |2,026|6|Accesorios|270,000|6|6,675,000|
 |2,026|7|Accesorios|790,000|4|7,465,000|
+
+</details>
 
 ### Consulta Final
 
@@ -447,7 +458,9 @@ LIMIT 5
 | 2,023 | 3   | 620,000   | 1,244,285.71       | Bajo el promedio              |
 | 2,023 | 5   | 440,000   | 1,244,285.71       | Bajo el promedio              |
 | 2,023 | 8   | 1,100,000 | 1,244,285.71       | Bajo el promedio              |
-se comprueba que el `CASE` evalúa correctamente la salida cuando es menor o mayor al promedio.
+
+
+> se comprueba que el `CASE` evalúa correctamente la salida cuando es menor o mayor al promedio.
 
 
 ### Query Final:
