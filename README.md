@@ -516,8 +516,11 @@ FROM consulta_final
 
 - Output
 
+<div>
+
 <details>
 <summary>📊 Ver tabla completa</summary>
+
 |año|mes|categoria|ventas|ranking_categorias|sum_acumulado_categoria|venta_mensual_contra_promedio|
 |---|---|---|---|---|---|---|
 |2,023|1|Tecnología|2,100,000|1|2,100,000|Bajo el promedio|
@@ -703,7 +706,10 @@ FROM consulta_final
 |2,026|8|Hogar|500,000|3|12,930,000|Bajo el promedio|
 |2,026|8|Cocina|260,000|4|34,840,000|Bajo el promedio|
 |2,026|8|Iluminación|165,000|5|6,735,000|Bajo el promedio|
+
 </details>
+
+</div>
 
 ## 🔗 Recursos
 
