@@ -473,7 +473,6 @@ SELECT
 	END AS turno
 	, EXTRACT(YEAR FROM datos.fecha) AS "año"
 	, EXTRACT(MONTH FROM fecha) AS mes
-	--, CAST(EXTRACT(MONTH FROM fecha) + EXTRACT(YEAR FROM fecha) * 100 AS VARCHAR) AS periodo_var --castear con CAST
 	, (EXTRACT(YEAR FROM fecha):: INT * 100 + EXTRACT(MONTH FROM fecha):: INT) AS periodo
 	, nombre_producto AS producto
 	, nombre_categoria AS categoria
