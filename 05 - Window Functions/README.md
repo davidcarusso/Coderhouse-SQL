@@ -87,7 +87,7 @@ CREATE TABLE IF NOT EXISTS entregable_05.venta(
 
 ### Visualizamos las tablas: 
 
-![[Pasted image 20260821093900.png]]
+![Relación de las tablas](./images/entregable_05_relaciones_tablas.png)
 
 ### Cargar de datos ``INSERT INTO``
 

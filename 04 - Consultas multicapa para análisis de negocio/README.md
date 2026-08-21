@@ -131,7 +131,7 @@ LIMIT 10
 
 ## Tablas: 
 
-![Relación de las tablas](./images/neondb%20-%20neondb%20-%20entregable_04.png)
+|
 
 
 
