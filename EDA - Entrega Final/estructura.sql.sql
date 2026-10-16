@@ -67,8 +67,8 @@ BEGIN;
 
 -- modificamos la columna precio a tipo decimal 
 ALTER TABLE trabajo_final_eda.products 
-ALTER COLUMN product_price TYPE DECIMAL
-USING product_price:: decimal 
+ALTER COLUMN product_price TYPE DECIMAL(10,2)
+USING product_price:: DECIMAL(10,2)
 ;
 
 COMMIT;
@@ -154,6 +154,30 @@ WHERE table_schema = 'trabajo_final_eda'
 
 -- cerramos 
 COMMIT;
+
+
+
+--- cambio de nombre Date a sale_date
+
+-- abrimos transaccion 
+BEGIN;
+
+-- Cambiamos el tipo de dato en la tabla sales de date. 
+ALTER TABLE trabajo_final_eda.sales
+RENAME COLUMN "Date" TO sale_date
+;
+
+-- cerramos 
+COMMIT;
+
+
+
+
+
+
+
+
+
 
 
 

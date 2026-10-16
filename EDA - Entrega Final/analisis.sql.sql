@@ -15,7 +15,7 @@
 -- Tablas
 SELECT * FROM trabajo_final_eda.products;  		-- productos
 SELECT * FROM trabajo_final_eda.stores;			-- tiendas
-SELECT * FROM trabajo_final_eda.sales s;  		-- ventas
+SELECT * FROM trabajo_final_eda.sales;  		-- ventas
 
 
 ----------------
@@ -108,8 +108,9 @@ SELECT
 	, MAX (product_cost)			AS max_cost
 	, MIN (product_cost)			AS min_cost
 	--- MARGEN --- 
-	, sum(product_price - product_cost) AS margen
-	, rank() OVER ( ORDER BY sum(product_price - product_cost) DESC )
+	-- , sum(product_price - product_cost) AS margen | error conceptual ya que suma los margenes y no tienen en cuenta la cantidad en cada categorias 
+	, round (AVG (product_price - product_cost)) AS margen_promedio	-- toma en cuenta la cantidad y promedia los margenes. 
+	, rank() OVER ( ORDER BY round (AVG (product_price - product_cost)) DESC )
 FROM trabajo_final_eda.products
 GROUP BY product_category
 ORDER BY rank ASC
@@ -271,7 +272,7 @@ WHERE table_name = 'sales';
 -- Probamos el cambio del Date (text a date) con un select. 
 SELECT 
 	TO_DATE("Date", 'DD-MM-YYYY') AS sale_date
-FROM 
+FROM trabajo_final_eda.sales
 ;
 
 
@@ -288,14 +289,34 @@ SELECT
 	, count(5) FILTER ( WHERE units IS NULL)
 FROM trabajo_final_eda.sales;
 
--- Opcion 2 para revisar nullos. 
+/* no encontramos nulos en la tabla de ventas */
+
+
+-- nulos en Prodcuts 
 SELECT 
-	  count(*) - count(1) AS null_col_1
-	, count(*) - count(2) AS null_col_2
-	, count(*) - count(3) AS null_col_3
-	, count(*) - count(4) AS null_col_4
-	, count(*) - count(5) AS null_col_5
-FROM trabajo_final_eda.sales s;
+	 count(1) FILTER ( WHERE product_id IS NULL)
+	 , count(2) FILTER ( WHERE product_name IS NULL)
+	 , count(3) FILTER ( WHERE product_category IS NULL)
+	 , count(4) FILTER ( WHERE product_cost IS NULL)
+	 , count(5) FILTER ( WHERE product_price IS NULL)
+FROM trabajo_final_eda.products
+;
+
+/*No encontramso nulos products*/
+
+
+-- Nulos en Stores
+SELECT 
+	  count(1) FILTER ( WHERE store_id IS NULL)
+	, count(2) FILTER ( WHERE store_name IS NULL)
+	, count(3) FILTER ( WHERE store_city IS NULL)
+	, count(4) FILTER ( WHERE store_location IS NULL)
+	, count(5) FILTER ( WHERE store_open_date IS NULL)	
+FROM trabajo_final_eda.stores
+;
+
+/* No encontramso nulos en store. */
+
 
 
 -- Rango de sale_dates 
@@ -452,7 +473,58 @@ WITH margen_anual AS
 --	alias 
 			AS variacion_porcentual
 	FROM margen_anual_con_LAG
+	WHERE NOT annio = '2026' -- annio es varchar por el TO_char
 ;
+
+
+WITH datos AS 
+(
+	SELECT
+		date_trunc('month', sale_date) :: date AS mes
+		, sum((product_price - product_cost) * units ) AS "Margen Total"
+	FROM vw_datos
+	GROUP BY date_trunc('month', sale_date)
+	ORDER BY 1
+),datos_margenes_mes_diff_porcentual AS 
+(
+	SELECT 
+		  *
+		, COALESCE (LAG ("Margen Total") OVER (ORDER BY mes), 0)  AS mg_ant
+		, COALESCE ( ("Margen Total" - LAG ("Margen Total") OVER (ORDER BY mes)) / LAG ("Margen Total") OVER (ORDER BY mes), 0)   * 100 AS diff_porcentual
+ 	FROM datos 
+	ORDER BY 1
+), datos_crecimiento AS 
+(
+	SELECT 
+		* 
+		, CASE	
+			WHEN diff_porcentual > 0 THEN 'Crecio'
+			WHEN diff_porcentual < 0 THEN 'Bajo'
+			ELSE 'Sin diferencia'
+		  END AS crecimiento
+	FROM datos_margenes_mes_diff_porcentual
+), cte_intermedio_tipo_mes  AS 
+(
+	SELECT 
+		  TO_CHAR(mes, 'TMMonth') AS mes_nombre 
+		, count(*) FILTER (WHERE crecimiento LIKE 'Bajo') 	AS bajo
+		, count(*) FILTER (WHERE crecimiento LIKE 'Crecio')	AS crecio
+	FROM datos_crecimiento
+	GROUP BY TO_CHAR(mes, 'TMMonth')
+	ORDER BY crecio DESC
+)
+	SELECT 
+		*
+		, CASE 
+			WHEN bajo < crecio THEN 'Mes Creciente'
+			WHEN bajo > crecio THEN 'Mes Bajista'
+			WHEN bajo = crecio THEN 'Estabilidad'			
+			ELSE 'Revisar'
+		  END AS "Tipo de Mes"
+	FROM cte_intermedio_tipo_mes
+;
+
+
 
 
 
@@ -531,13 +603,52 @@ SELECT
 	,  product_category
 	, "Margen Bruto"
 FROM margenes
-ORDER BY 2 DESC
+ORDER BY "Margen Bruto" DESC
 LIMIT 10
 ;
 
+--- VENTAS POR PRODUCTOS Y CATEGORIAS ---
+--- QUERY CON DISTINTAS CTE ---
+
+WITH datos AS 
+(
+	SELECT 
+		product_name
+		, product_category 
+		, sum(units * product_price) AS ventas
+		, rank() OVER (ORDER BY sum(units * product_price) DESC) AS rank_ventas_global 
+		, rank() OVER (PARTITION BY product_category ORDER BY sum(units * product_price) ) AS rank_ventas_categoria
+	FROM vw_datos
+	GROUP BY product_name, product_category 
+), productos_top_3_menos_vendidos AS 
+(
+	SELECT 
+		* 
+	FROM datos
+	ORDER BY rank_ventas_global DESC
+	LIMIT 3
+), productos_top_3_menos_vendidos_categorias AS 
+(
+	SELECT 
+		* 
+	FROM datos
+	WHERE rank_ventas_categoria IN (1, 2 ,3)
+	ORDER BY product_category, rank_ventas_categoria
+)
+	SELECT 
+		product_name, 
+		product_category, 
+		ventas, 
+		rank_ventas_categoria
+	FROM productos_top_3_menos_vendidos_categorias
+;
+
+
+
+
 
 ---------------------
---- ANALISAR 2026 --- 
+--- ANALIZAR 2026 --- 
 ---------------------
 
 
@@ -574,9 +685,20 @@ WITH datos AS
 	GROUP BY store_city
 	ORDER BY 2 DESC
 	LIMIT 10 
+), ventas_mensuales AS 
+(
+	SELECT 
+		to_char(date_trunc('month', sale_date), 'YYYYMM')
+		, sum(units * product_price) AS ventas
+		, RANK () OVER (ORDER BY sum(units * product_price) DESC) AS rk_ventas
+	FROM datos
+	GROUP BY date_trunc('month', sale_date)
+	ORDER BY 1
 )
-SELECT * FROM top_ciudad_ventas
+	SELECT * FROM ventas_mensuales
 ;
+
+
 
 
 
