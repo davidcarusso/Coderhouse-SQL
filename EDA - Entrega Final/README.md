@@ -68,15 +68,18 @@ CREATE TABLE IF NOT EXISTS trabajo_final_eda.sales(
 
 Importar mediante la herramienta de `DBreave` importar Datos. Es importante estar seleccionando la tabla que se quiere completar. 
 
-![[Pasted image 20261006190511.png]]
 
-![[Pasted image 20261006190455.png]]
+![Descripción de la imagen](./static/image/Pasted%20image%2020261006190511.png)
 
-![[Pasted image 20261006191445.png]]
+![Descripción de la imagen](./static/image/Pasted%20image%2020261006190455.png)
+
+![Descripción de la imagen](./static/image/Pasted%20image%2020261006191445.png)
+
 
 Podemos observar un modelo estrella con una tabla transaccional (sales) y otras dos dimensionales (products y stores). 
 
-![[neondb - neondb - trabajo_final_eda.png]]
+![Esquema de base de datos en Neon](./static/image/neondb%20-%20neondb%20-%20trabajo_final_eda.png)
+
 
 # Exploración de datos
 
